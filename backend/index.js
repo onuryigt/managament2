@@ -1,12 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const userRoutes = require('./routes/user.routes');
+const cors = require('cors');
 const app = express();
 
-app.use(bodyParser.json());
-app.use('/api/users', userRoutes);
+// CORS middleware'ini ekleyin
+app.use(cors());
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+// Diğer middleware ve route'lar burada
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

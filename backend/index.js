@@ -5,12 +5,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 // Örnek bir API endpoint'i
 app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working' });
